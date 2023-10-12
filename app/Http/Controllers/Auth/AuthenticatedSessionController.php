@@ -28,17 +28,14 @@ class AuthenticatedSessionController extends Controller
     {
         // Authenticate the user
         $request->authenticate();
-
+        return redirect()->route('dashboard');
+    }
+       public function dashboard(){
         $id = Auth::id();
         $user = User::find($id)->roles;
-        if ($user->role === ADMIN) {  
-            return view('admin');
-        } else {
-            return view('user');
-        }
-
+        $role=$user->role;
+        return view('dashboard', compact("role"));
     }
-
     /**
      * Destroy an authenticated session.
      */
