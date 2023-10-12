@@ -15,6 +15,14 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        <!-- Phone Number -->
+       <!-- Phone Number -->
+<div class="mt-4">
+    <x-input-label for="phone_no" :value="__('Phone No')" />
+    <x-text-input id="phone_no" class="block mt-1 w-full" type="number" name="phone_no" :value="old('phone_no')" required    oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);" />
+    <x-input-error :messages="$errors->get('phone_no')" class="mt-2" />
+</div>
+
 
         <!-- Password -->
         <div class="mt-4">
