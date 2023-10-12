@@ -15,6 +15,7 @@ use Illuminate\View\View;
 use App\Models\Role;
 use App\Mail\Registration;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
 
 class RegisteredUserController extends Controller
 {
@@ -25,6 +26,7 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+
     /**
      * Handle an incoming registration request.
      *
@@ -32,9 +34,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // credentials for Twilio
+        $twilioConfig = config('services.twilio');
+
+        $account_sid = $twilioConfig['account_sid'];
+        $account_token = $twilioConfig['account_token'];
+        $number = $twilioConfig['number'];
+
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255'], 
             'phone_no' => ['required', 'numeric'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -42,24 +52,31 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone_no'=>$request->phone_no,
+            'phone_no' => $request->phone_no,
             'password' => Hash::make($request->password),
         ]);
+
         $role = new Role();
         $user->roles()->save($role);
         event(new Registered($user));
-
         Auth::login($user);
-        $mailData = ['title' => 'WELCOME ' . $user->name,
-    "body"=>"We are thrilled to welcome you to our community! Your successful registration marks the beginning of an exciting journey with us. We're here to assist you every step of the way, and we can't wait to share all that our platform has to offer.
-
-    Feel free to explore and make the most of your membership. If you have any questions or need assistance, please don't hesitate to reach out to our support team"]; 
-
-       if( Mail::to($user->email)->send(new Registration($mailData)))
-       {
-        return redirect(RouteServiceProvider::HOME);
-       }
-
         
+        // Mail data for email
+        $mailData = ['title' => 'WELCOME ' . $user->name, 'body' => CONTENT]; 
+        
+        // Twilio client for sending an SMS
+        $client = new Client($account_sid, $account_token);
+        $client->messages->create('+91' . $user->phone_no, [
+            'from' => $number,
+            'body' => CONTENT, 
+        ]);
+
+        // Send a registration email
+        if(Mail::to($user->email)->send(new Registration($mailData)))
+        {
+            return redirect(RouteServiceProvider::HOME);
+        }
+
+       
     }
 }
