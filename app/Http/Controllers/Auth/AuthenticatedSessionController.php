@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -23,13 +24,19 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
+        // Authenticate the user
         $request->authenticate();
 
-        $request->session()->regenerate();
+        $id = Auth::id();
+        $user = User::find($id)->roles;
+        if ($user->role === ADMIN) {  
+            return view('admin');
+        } else {
+            return view('user');
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
