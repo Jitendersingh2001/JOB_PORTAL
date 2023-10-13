@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+@include('layouts.usernavigation') 
 user
 </body>
 </html>
