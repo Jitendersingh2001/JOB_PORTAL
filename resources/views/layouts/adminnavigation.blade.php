@@ -17,12 +17,13 @@
                 </div> -->
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link href="javascript:void(0)" class="nav-link" data-target="JobContainer">
+               
                         {{ __('Jobs') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" >
+                <x-nav-link href="javascript:void(0)" class="nav-link" data-target="appliedJob">
                         {{ __('Apllied Jobs') }}
                     </x-nav-link>
                 </div>

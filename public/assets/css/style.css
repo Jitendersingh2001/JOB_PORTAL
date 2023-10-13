@@ -1,3 +1,14 @@
 .inner-job-container {
     color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.job-container {
+    padding: 40px;
+    padding-top: 10px !important;
+}
+.inner-create-job,
+.card-action {
+    display: flex;
+    justify-content: flex-end;
 }
