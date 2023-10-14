@@ -2,6 +2,7 @@
     color: white;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    row-gap: 25px;
 }
 .job-container {
     padding: 40px;
@@ -11,4 +12,13 @@
 .card-action {
     display: flex;
     justify-content: flex-end;
+}
+.job-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+}
+.hide {
+    display: none;
 }

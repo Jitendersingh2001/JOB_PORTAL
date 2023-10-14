@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string("job_title");
             $table->text("description");
             $table->text("requirements"); 
-            $table->dateTime("deadline"); 
             $table->timestamps();
         });
     }
