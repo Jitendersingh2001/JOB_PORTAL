@@ -11,6 +11,11 @@
 </head>
 <body>
 @include('layouts.usernavigation') 
+<div class="job-container">
+    <div class="inner-job-container">
+        <!-- CONTAINER FOR JOBS CARD -->
+    </div>
+    </div>
 <!-- JQUERY CDN LINK -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
      <!-- flowbite -->

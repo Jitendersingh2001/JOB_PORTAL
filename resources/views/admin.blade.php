@@ -23,38 +23,6 @@
 <div class="job-container">
     <div class="inner-job-container">
         <!-- CONTAINER FOR JOBS CARD -->
-        <!-- <div class="max-w-sm p-6 m-3 job-card bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white job-title">
-                          vzvz
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    vzvzx
-                    </p>
-                    <h6 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white job-title">
-                        Requirements: -
-                    </h6>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    vzxv
-                    </p>
-                    <div class="card-action pt-2">
-                        <button
-                            type="button"
-                            class="text-white bg-green-700 hover-bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                            id="edit-job-btn" data-modal-target="create-job" data-modal-toggle="create-job"  data-id="${job.id}" 
-                        >
-                            Edit
-                        </button>
-                        <button
-                            type="button"
-                            class="text-white bg-red-700 hover-bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                            id="dlt-job-btn"  data-id="${job.id}" 
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div> -->
     </div>
     </div>
 </div>
