@@ -31,4 +31,31 @@ class JobController extends Controller
           return "fail";
         }
     }
+    public function getJob($id)
+    {
+        $Job=Job::find($id);
+        return $Job; 
+    }
+    public function UpdateJob($id, Request $request) {
+        // dd($request->input('status'));
+        $job = JOB::find($id);
+    
+        if (!$job) {
+            return response()->json(['error' => 'Job not found'], 404);
+        } else {
+            $data = [
+                'Job_title' => $request->input('Job_title'),
+                'Job_description' => $request->input('Job_description'),
+                'Job_requirement' => $request->input('Job_requirment'), 
+                'Status' => $request->input('status'),
+            ];
+    
+            if ($job->update($data)) {
+                return response()->json(['message' => 'Job updated successfully']);
+            } else {
+                return response()->json(['error' => 'Failed to update the job'], 500);
+            }
+        }
+    }
+    
 }

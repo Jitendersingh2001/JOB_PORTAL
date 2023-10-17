@@ -18,9 +18,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('welcome');
 });
+//Job Routes
 Route::post('/job',[JobController::class,'CreateJob']);
 Route::get('/job',[JobController::class,'getJobs']);
 Route::delete('/job/{id}',[JobController::class,'DeleteJob']);
+Route::get('/job/{id}',[JobController::class,'getJob']);
+Route::post('/updatejob/{id}',[JobController::class,'UpdateJob']);
+
+
+//Auth Routes
 Route::get('/dashboard', [AuthenticatedSessionController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

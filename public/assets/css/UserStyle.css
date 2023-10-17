@@ -1,8 +1,9 @@
 .inner-job-container {
+    margin-top: 20px;
     color: white;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 25px;
+    gap: 25px;
 }
 .job-container {
     padding: 40px;
@@ -13,4 +14,8 @@
     flex-direction: column !important;
     justify-content: space-between !important;
     height: 100% !important;
+}
+#apply-job-btn {
+    margin-top: 20px;
+    background-color: forestgreen !important;
 }

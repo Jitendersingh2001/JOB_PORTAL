@@ -8,7 +8,7 @@ class AddStatusToAppliedJobs extends Migration
     public function up()
     {
         Schema::table('applied_jobs', function (Blueprint $table) {
-            $table->enum('status', ['approved', 'pending', 'reject'])->default('pending');
+            $table->enum('status', ['approved', 'pending', 'inactive'])->default('pending');
         });
     }
 

@@ -11,6 +11,7 @@ class Job extends Model
         'Job_title',
         'Job_description',
         'Job_requirement',
+        'Status',
     ];
     use HasFactory;
 }

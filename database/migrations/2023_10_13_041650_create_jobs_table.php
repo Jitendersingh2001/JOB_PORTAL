@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("job_title");
             $table->text("description");
             $table->text("requirements"); 
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
