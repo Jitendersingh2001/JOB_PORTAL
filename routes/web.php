@@ -29,6 +29,7 @@ Route::post('/updatejob/{id}',[JobController::class,'UpdateJob']);
 Route::post('/applyjob',[AppliedJobController::class,'ApplyJob']);
 Route::get('/applied_jobs',[AppliedJobController::class,'GetAppliedJobs']);
 Route::post('/getCanditates/{id}',[AppliedJobController::class,'GetAppliedCanditates']);
+Route::post('/updateCandidateStatus/{id}',[AppliedJobController::class,'UpdateStatus']);
 
 //Auth Routes
 Route::get('/dashboard', [AuthenticatedSessionController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');

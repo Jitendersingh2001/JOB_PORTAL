@@ -32,4 +32,18 @@ class AppliedJobController extends Controller
     {
         return AppliedJob::select('user_id')->where('job_id', $id)->with("users")->get();
     }
+    public function UpdateStatus($jobId, Request $request) {
+        foreach ($request->all() as $item) {
+            $userId = $item['userId'];
+            $status = $item['status'];
+            $appliedJob = AppliedJob::where('job_id', $jobId)->where('user_id', $userId)->first();
+    
+            if ($appliedJob) {
+                $appliedJob->update(['status' => $status]);
+            }
+        }
+        return response()->json(['message' => 'Status updated successfully'], 200);
+    }
+    
+    
 }

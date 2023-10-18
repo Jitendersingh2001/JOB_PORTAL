@@ -40,7 +40,11 @@ $(document).ready(function () {
     </form>`);
     }
     //Create modal
-    $(".view-create-modal").click(modalContent());
+    $(".view-create-modal").click(function () {
+        $("modal-content").empty();
+        OpenModal(2);
+        modalContent();
+    });
     //To reset the name of modal
     $("#close-modal-btn").on("click", function () {
         $("#modal-job-head").text("Create Job");
@@ -326,13 +330,13 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 OpenModal();
                 $("#modal-job-head").text("View Canditates");
                 $(".modal-content").empty();
                 $("#Canditate-submit-btn").removeClass("hide");
                 data.forEach(function (job) {
-                    console.log(job.users);
+                    // console.log(job.users);
                     $(".modal-content").append(`<ul class="my-4 space-y-3">
                     <li  data-id="${job.users.id}"class="flex items-center justify-between p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         <span class="flex-1 ml-3 whitespace-nowrap">${job.users.name}</span>
@@ -345,6 +349,46 @@ $(document).ready(function () {
                 </ul>
                
                 `);
+                });
+            },
+            error: function () {
+                $.toast({
+                    heading: "Error",
+                    text: ERROR,
+                    showHideTransition: "slide",
+                    icon: "error",
+                });
+            },
+        });
+    });
+    //Submit Canditate Status
+    $(".submit-canditate-status").click(function () {
+        let candidateStatuses = [];
+        $(".modal-content ul").each(function () {
+            let userId = $(this).find("li").data("id");
+            let status = $(this).find("#application-action").val();
+
+            candidateStatuses.push({
+                userId: userId,
+                status: status,
+            });
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/updateCandidateStatus/" + jobId,
+            data: JSON.stringify(candidateStatuses),
+            contentType: "application/json",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function () {
+                $.toast({
+                    heading: "Success",
+                    text: "Canditate Status Updated successfully",
+                    showHideTransition: "slide",
+                    icon: "success",
+                    hideAfter: 1000,
                 });
             },
             error: function () {

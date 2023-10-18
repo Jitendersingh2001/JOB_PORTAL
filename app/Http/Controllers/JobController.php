@@ -22,15 +22,17 @@ class JobController extends Controller
         return response()->json(['Jobs' => $Jobs,]);   
     }
     public function DeleteJob($id){
-        $Jobs=Job::find($id)->delete();
-        if($Jobs)
-        {
-          return "delete sucessfull";
-        }
-        else{
-          return "fail";
+        $job = Job::find($id);
+        if($job) {
+            $job->deletejob()->delete();
+            $job->delete();
+    
+            return "Delete successful";
+        } else {
+            return "Job not found";
         }
     }
+    
     public function getJob($id)
     {
         $Job=Job::find($id);

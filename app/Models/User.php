@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class);
     }
+    public function DeleteUserJob()
+    {
+        return $this->hasMany(AppliedJob::class, 'user_id');
+    }
 }
