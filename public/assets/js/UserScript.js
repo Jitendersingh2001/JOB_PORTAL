@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    let userId = $("body").data("user-id");
+    let jobId;
     function loadJobs() {
         $.ajax({
             type: "GET",
@@ -14,7 +16,7 @@ $(document).ready(function () {
     }
 
     function displayJobs(data) {
-        console.log(data);
+        // console.log(data);
         let jobContainer = $(".inner-job-container");
         jobContainer.empty();
         data.Jobs.forEach(function (job) {
@@ -38,8 +40,8 @@ $(document).ready(function () {
                     <div class="card-action pt-2">
                     <button
                     type="button"
-                    class="text-white w-full bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                    id="apply-job-btn" data-id="${job.id}"
+                    class="text-white apply-job-btn w-full bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    id="apply-job-btn-${job.id}" data-id="${job.id}"
                 >
                             Apply
                         </button>
@@ -51,4 +53,32 @@ $(document).ready(function () {
     }
 
     loadJobs();
+    $(".inner-job-container").on("click", ".apply-job-btn", function () {
+        jobId = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "/applyjob",
+            data: { userId, jobId },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function () {
+                $.toast({
+                    heading: "Success",
+                    text: "Job applied successfully",
+                    showHideTransition: "slide",
+                    icon: "success",
+                    hideAfter: 1000,
+                });
+            },
+            error: function (error) {
+                $.toast({
+                    heading: "Error",
+                    text: error.responseJSON.message,
+                    showHideTransition: "slide",
+                    icon: "error",
+                });
+            },
+        });
+    });
 });

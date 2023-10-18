@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\AppliedJobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 /*
@@ -24,7 +25,8 @@ Route::get('/job',[JobController::class,'getJobs']);
 Route::delete('/job/{id}',[JobController::class,'DeleteJob']);
 Route::get('/job/{id}',[JobController::class,'getJob']);
 Route::post('/updatejob/{id}',[JobController::class,'UpdateJob']);
-
+//Applied Job Route
+Route::post('/applyjob',[AppliedJobController::class,'ApplyJob']);
 
 //Auth Routes
 Route::get('/dashboard', [AuthenticatedSessionController::class,'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');

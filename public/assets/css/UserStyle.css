@@ -15,7 +15,7 @@
     justify-content: space-between !important;
     height: 100% !important;
 }
-#apply-job-btn {
+.apply-job-btn {
     margin-top: 20px;
     background-color: forestgreen !important;
 }

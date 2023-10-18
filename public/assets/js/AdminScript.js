@@ -130,7 +130,6 @@ $(document).ready(function () {
                     showHideTransition: "slide",
                     icon: "success",
                     hideAfter: 1000,
-                    afterHidden: function () {},
                 });
             },
             error: function (error) {
