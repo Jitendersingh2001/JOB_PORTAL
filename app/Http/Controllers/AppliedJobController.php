@@ -44,6 +44,12 @@ class AppliedJobController extends Controller
         }
         return response()->json(['message' => 'Status updated successfully'], 200);
     }
+    public function GetAppliedJob($userid)
+    {
+       return AppliedJob::where('user_id', $userid)->with('Jobs')->get();
+    }
+    
+    
     
     
 }

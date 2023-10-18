@@ -19,3 +19,25 @@
     margin-top: 20px;
     background-color: forestgreen !important;
 }
+.hide {
+    display: none;
+}
+.applied-job-main-container {
+    padding: 40px;
+    padding-top: 40px !important;
+}
+.applied-job-container {
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.pending {
+    background-color: #ee9322 !important;
+}
+.approved {
+    background-color: forestgreen !important;
+}
+.rejected {
+    background-color: red !important;
+}

@@ -28,6 +28,7 @@ Route::post('/updatejob/{id}',[JobController::class,'UpdateJob']);
 //Applied Job Route
 Route::post('/applyjob',[AppliedJobController::class,'ApplyJob']);
 Route::get('/applied_jobs',[AppliedJobController::class,'GetAppliedJobs']);
+Route::get('/appliedjobs/{id}',[AppliedJobController::class,'GetAppliedJob']);
 Route::post('/getCanditates/{id}',[AppliedJobController::class,'GetAppliedCanditates']);
 Route::post('/updateCandidateStatus/{id}',[AppliedJobController::class,'UpdateStatus']);
 

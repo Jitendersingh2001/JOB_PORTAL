@@ -16,6 +16,11 @@
         <!-- CONTAINER FOR JOBS CARD -->
     </div>
     </div>
+    <div class="applied-job-main-container hide">
+   <div class="applied-job-container">
+    <!-- Applied Jobs -->
+   </div>
+</div>
 <!-- JQUERY CDN LINK -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
      <!-- flowbite -->

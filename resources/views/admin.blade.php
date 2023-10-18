@@ -30,6 +30,7 @@
 <div class="applied-job-main-container hide">
    <div class="applied-job-container">
     <!-- Applied Jobs -->
+    
    </div>
 </div>
 
