@@ -14,10 +14,10 @@
 </head>
 <body>
 @include('layouts.adminnavigation')
-<div class="job-main-container" id="JobContainer">
+<div class="job-main-container" >
 <div class="create-job-container">
     <div class="inner-create-job pt-5 pr-11">
-    <button type="button"  data-modal-target="create-job" data-modal-toggle="create-job" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Job</button>
+    <button type="button"  data-modal-target="create-job" data-modal-toggle="create-job" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 view-create-modal">Create Job</button>
  
 </div>
 <div class="job-container">
@@ -27,8 +27,10 @@
     </div>
 </div>
 </div>
-<div class="applied-job-main-container" id="appliedJob">
-    
+<div class="applied-job-main-container hide">
+   <div class="applied-job-container">
+    <!-- Applied Jobs -->
+   </div>
 </div>
 
 <!-- FORM MODAL -->
@@ -42,32 +44,27 @@
                 </svg>
                 <span class="sr-only">Close modal</span>
             </button>
+            <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white" id="modal-job-head">
+                Create Job
+                </h3>
+            </div>
             <div class="px-6 py-6 lg:px-8">
-                <h3 class="mb-4 text-xl  font-medium text-gray-900 dark:text-white" id="modal-job-head">Create Job</h3>
-                <form class="space-y-6" id="CreateFrom" action="POST">
-                {{csrf_field()}}
-                    <div>
-                        <label for="Job_title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Title</label>
-                        <input type="text" name="Job_title" id="Job_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                    </div>
-                    <div>
-                        <label for="Job_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Description</label>
-                        <textarea id="Job_description" name="Job_description" id="Job_description" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
-                    </div>
-                    <div>
-                        <label for="Job_requirment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Requirement</label>
-                        <textarea id="Job_requirment" rows="2" name="Job_requirment" id="Job_requirment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
-                    </div>
-                    <div class="status-container"></div>
-                    <div class="modal-footer">
-                    <input type="submit"  class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 create-job-btn" id="create-job-btn" name="submit" value="Create" >
-                    </div>
-                   
-                </form>
+             <div class="modal-content">
+             
+             </div>
+            </div>
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 hide" id="Canditate-submit-btn">
+                <button data-modal-hide="create-job" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SUBMIT</button>
             </div>
         </div>
+       
     </div>
 </div> 
+
+
+
+
 
   <!-- JQUERY CDN LINK -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

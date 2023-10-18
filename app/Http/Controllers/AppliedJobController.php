@@ -25,4 +25,11 @@ class AppliedJobController extends Controller
                 'message' => 'Job application already exists'], 302);
         }
     }
+    public function GetAppliedJobs() {
+        return AppliedJob::select('job_id')->distinct()->with('Jobs')->get();
+    }
+    public function GetAppliedCanditates($id)
+    {
+        return AppliedJob::select('user_id')->where('job_id', $id)->with("users")->get();
+    }
 }

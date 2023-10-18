@@ -13,7 +13,7 @@ class JobController extends Controller
         $data = [
             'Job_title' => $request->input('Job_title'),
             'Job_description' => $request->input('Job_description'),
-            'Job_requirement' => $request->input('Job_requirment'),
+            'Job_requirement' => $request->input('Job_requirement'),
         ];
         Job::create($data);
     }
@@ -46,7 +46,7 @@ class JobController extends Controller
             $data = [
                 'Job_title' => $request->input('Job_title'),
                 'Job_description' => $request->input('Job_description'),
-                'Job_requirement' => $request->input('Job_requirment'), 
+                'Job_requirement' => $request->input('Job_requirement'), 
                 'Status' => $request->input('status'),
             ];
     

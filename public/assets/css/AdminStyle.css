@@ -1,4 +1,5 @@
-.inner-job-container {
+.inner-job-container,
+.applied-job-container {
     color: white;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,4 +35,13 @@
 }
 .status-container {
     display: flex !important;
+}
+.applied-job-main-container {
+    padding: 40px;
+    padding-top: 40px !important;
+}
+.view-job-btn {
+    width: 100% !important;
+    background-color: forestgreen !important;
+    padding: 10px 0px !important;
 }
