@@ -338,7 +338,7 @@ $(document).ready(function () {
                 data.forEach(function (job) {
                     // console.log(job.users);
                     $(".modal-content").append(`<ul class="my-4 space-y-3">
-                    <li  data-id="${job.users.id}"class="flex items-center justify-between p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                    <li  data-id="${job.users.id}"class="mt-4 flex items-center justify-between p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50  group  dark:bg-gray-600  dark:text-white">
                         <span class="flex-1 ml-3 whitespace-nowrap">${job.users.name}</span>
                         <select id="application-action" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="pending">pending</option>

@@ -32,12 +32,12 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
 }
-.pending {
+.Pending {
     background-color: #ee9322 !important;
 }
-.approved {
+.Approved {
     background-color: forestgreen !important;
 }
-.rejected {
+.Rejected {
     background-color: red !important;
 }
