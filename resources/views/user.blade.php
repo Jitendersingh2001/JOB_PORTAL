@@ -6,6 +6,7 @@
     <title>Document</title>
        <!-- CSS LINK -->
        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/UserStyle.css') }}">
+       <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <!-- TOAST CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>

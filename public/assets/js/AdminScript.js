@@ -341,9 +341,9 @@ $(document).ready(function () {
                     <li  data-id="${job.users.id}"class="mt-4 flex items-center justify-between p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50  group  dark:bg-gray-600  dark:text-white">
                         <span class="flex-1 ml-3 whitespace-nowrap">${job.users.name}</span>
                         <select id="application-action" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="pending">pending</option>
-                            <option value="approved">approved</option>
-                            <option value="rejected">rejected</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
                         </select>
                     </li>
                 </ul>

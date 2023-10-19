@@ -97,6 +97,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
+
                 let jobContainer = $(".applied-job-container");
                 jobContainer.empty();
                 data.forEach(function (job) {
@@ -135,4 +136,22 @@ $(document).ready(function () {
             },
         });
     }
+    // PUSHER CODE
+    let pusher = new Pusher("89227c61d9d7814c9807", {
+        cluster: "ap2",
+    });
+    let channel = pusher.subscribe(`my-channel-${userId}`);
+    channel.bind("my-event", function (data) {
+        $.toast({
+            heading: "Update Status",
+            text: `${data.message}`,
+            icon: "info",
+            loader: true,
+            loaderBg: "#9EC600",
+            hideAfter: 1000,
+            afterHidden: function () {
+                appliedJobs();
+            },
+        });
+    });
 });
