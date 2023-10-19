@@ -5,3 +5,4 @@ const CONTENT="We are thrilled to welcome you to our community! Your successful 
     
 Feel free to explore and make the most of your membership. If you have any questions or need assistance, please don't hesitate to reach out to our support team";
 const ERROR="Something Went Wrong !!";
+const JOBCONTENT="We are thrilled to welcome you to our community! Your successful Applied For Job";

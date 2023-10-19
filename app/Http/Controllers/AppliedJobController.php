@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AppliedJobMail;
 use App\Models\AppliedJob;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Job;
 use App\Events\SendNotification;
 use Illuminate\Http\Request;
 
@@ -18,6 +21,8 @@ class AppliedJobController extends Controller
         $user=User::find($userId);
         $userName=$user->name;
         $jobId = $request->input('jobId');
+        $job=Job::find($jobId);
+        $jobTitle=$job->job_title;
         $existingApplication = AppliedJob::where('user_id', $userId)->where('job_id', $jobId)->first();
 
         if (!$existingApplication) {
@@ -26,7 +31,13 @@ class AppliedJobController extends Controller
                 'job_id' => $jobId,
             ]);
             event(new SendNotification('Job applied successfully', $adminId,$userName));
+             // Mail data for email
+        $mailData = [ 'title' => 'Welcome ' . $userName,  'body' => JOBCONTENT,'JobTitle'=>$jobTitle]; 
+        if(Mail::to($user->email)->send(new AppliedJobMail($mailData)))
+        {
             return response()->json(['message' => 'Job applied successfully']);
+        }
+           
         } else {
             return response()->json([
                 'message' => 'Job application already exists'], 302);
