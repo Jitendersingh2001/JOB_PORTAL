@@ -9,17 +9,24 @@ use App\Models\User;
 use App\Models\Job;
 use App\Events\SendNotification;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 
 class AppliedJobController extends Controller
 {
     public function applyJob(Request $request)
     {
+         // credentials for Twilio
+         $twilioConfig = config('services.twilio');
+
+         $account_sid = $twilioConfig['account_sid'];
+         $account_token = $twilioConfig['account_token'];
+         $number = $twilioConfig['number'];
+
         $adminRole=Role::where('role', 'admin')->first();
         $adminId = $adminRole->user_id; 
         // dd($request);
         $userId = $request->input('userId'); 
         $user=User::find($userId);
-        $userName=$user->name;
         $jobId = $request->input('jobId');
         $job=Job::find($jobId);
         $jobTitle=$job->job_title;
@@ -30,9 +37,17 @@ class AppliedJobController extends Controller
                 'user_id' => $userId,
                 'job_id' => $jobId,
             ]);
-            event(new SendNotification('Job applied successfully', $adminId,$userName));
-             // Mail data for email
-        $mailData = [ 'title' => 'Welcome ' . $userName,  'body' => JOBCONTENT,'JobTitle'=>$jobTitle]; 
+            event(new SendNotification('Job applied successfully', $adminId,$user->name));
+             // Twilio client for sending an SMS
+      
+        $client = new Client($account_sid, $account_token);
+        $smsHead = "Applied for $jobTitle"; 
+        $smsBody = JOBCONTENT; 
+        $client->messages->create('+91' . $user->Phone_no, [
+            'from' => $number,
+            'body' => $smsHead . "\n" . $smsBody, 
+        ]);
+        $mailData = [ 'title' => 'Welcome ' . $user->name,  'body' => JOBCONTENT,'JobTitle'=>$jobTitle]; 
         if(Mail::to($user->email)->send(new AppliedJobMail($mailData)))
         {
             return response()->json(['message' => 'Job applied successfully']);
