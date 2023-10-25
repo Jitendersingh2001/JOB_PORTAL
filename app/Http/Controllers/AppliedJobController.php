@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Job;
 use App\Events\SendNotification;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Twilio\Rest\Client;
 
 class AppliedJobController extends Controller
@@ -22,7 +23,7 @@ class AppliedJobController extends Controller
          $account_token = $twilioConfig['account_token'];
          $number = $twilioConfig['number'];
 
-        $adminRole=Role::where('role', 'admin')->first();
+        $adminRole=Role::where('role', Role::ADMIN)->first();
         $adminId = $adminRole->user_id; 
         // dd($request);
         $userId = $request->input('userId'); 
@@ -37,35 +38,38 @@ class AppliedJobController extends Controller
                 'user_id' => $userId,
                 'job_id' => $jobId,
             ]);
-            event(new SendNotification('Job applied successfully', $adminId,$user->name));
+            event(new SendNotification( __('messages.APPLYSUCCESSFULLY'), $adminId,$user->name));
              // Twilio client for sending an SMS
       
         $client = new Client($account_sid, $account_token);
         $smsHead = "Applied for $jobTitle"; 
-        $smsBody = JOBCONTENT; 
+        $smsBody = __('messages.JOBCONTENT'); 
         $client->messages->create('+91' . $user->Phone_no, [
             'from' => $number,
             'body' => $smsHead . "\n" . $smsBody, 
         ]);
-        $mailData = [ 'title' => 'Welcome ' . $user->name,  'body' => JOBCONTENT,'JobTitle'=>$jobTitle]; 
+        $mailData = [ 'title' => 'Welcome ' . $user->name,  'body' => __('messages.CONTENT'),'JobTitle'=>$jobTitle]; 
         if(Mail::to($user->email)->send(new AppliedJobMail($mailData)))
         {
-            return response()->json(['message' => 'Job applied successfully']);
+            return response()->json(['message' =>   __('messages.APPLYSUCCESSFULLY')]);
         }
            
         } else {
             return response()->json([
-                'message' => 'Job application already exists'], 302);
+                'message' =>  __('messages.ALREADYEXIST')], Response::HTTP_FOUND);
         }
 
     }
-    public function GetAppliedJobs() {
+
+    public function getAppliedJobs() {
         return AppliedJob::select('job_id')->distinct()->with('Jobs')->get();
     }
-    public function GetAppliedCanditates($id)
+
+    public function getAppliedCanditates($id)
     {
         return AppliedJob::select('user_id')->where('job_id', $id)->with("users")->get();
     }
+
     public function UpdateStatus($jobId, Request $request) {
         foreach ($request->all() as $item) {
             $userId = $item['userId'];
@@ -78,18 +82,18 @@ class AppliedJobController extends Controller
     
                     if ($user) {
                         $userName = $user->name;
-                        event(new SendNotification("Job status updated by Admin", $userId, $userName));
+                        event(new SendNotification("Status updated successfully by Admin", $userId, $userName));
                     }
                 
             }
         }
        
-        return response()->json(['message' => 'Status updated successfully'], 200);
+        return response()->json(['message' => __('messages.STATUSUPDATED')], Response::HTTP_OK);
     }
     
     
     
-    public function GetAppliedJob($userid)
+    public function getAppliedJob($userid)
     {
        return AppliedJob::where('user_id', $userid)->with('Jobs')->get();
     }

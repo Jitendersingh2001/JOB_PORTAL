@@ -15,7 +15,7 @@ class Job extends Model
         'Status',
     ];
     use HasFactory;
-    public function deletejob()
+    public function deleteJob()
     {
         return $this->hasMany(AppliedJob::class, 'job_id');
     }

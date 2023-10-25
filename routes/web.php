@@ -21,16 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Job Routes
-Route::post('/job',[JobController::class,'CreateJob']);
+Route::post('/job',[JobController::class,'createJob']);
 Route::get('/job',[JobController::class,'getJobs']);
-Route::delete('/job/{id}',[JobController::class,'DeleteJob']);
+Route::delete('/job/{id}',[JobController::class,'deleteJob']);
 Route::get('/job/{id}',[JobController::class,'getJob']);
-Route::post('/updatejob/{id}',[JobController::class,'UpdateJob']);
+Route::post('/updateJob/{id}',[JobController::class,'updateJob']);
 //Applied Job Route
 Route::post('/applyjob',[AppliedJobController::class,'ApplyJob']);
-Route::get('/applied_jobs',[AppliedJobController::class,'GetAppliedJobs']);
-Route::get('/appliedjobs/{id}',[AppliedJobController::class,'GetAppliedJob']);
-Route::post('/getCanditates/{id}',[AppliedJobController::class,'GetAppliedCanditates']);
+Route::get('/applied_jobs',[AppliedJobController::class,'getAppliedJobs']);
+Route::get('/appliedjobs/{id}',[AppliedJobController::class,'getAppliedJob']);
+Route::post('/getCanditates/{id}',[AppliedJobController::class,'getAppliedCanditates']);
 Route::post('/updateCandidateStatus/{id}',[AppliedJobController::class,'UpdateStatus']);
 
 //Auth Routes

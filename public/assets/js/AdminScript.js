@@ -23,15 +23,15 @@ $(document).ready(function () {
         ).append(`<form class="space-y-6" id="CreateFrom" action="POST">
         <div>
             <label for="Job_title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Title</label>
-            <input type="text" name="Job_title" id="Job_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+            <input type="text" name="Job_title" id="Job_title" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 " required>
         </div>
         <div>
             <label for="Job_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Description</label>
-            <textarea id="Job_description" name="Job_description" id="Job_description" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
+            <textarea id="Job_description" name="Job_description" id="Job_description" rows="2" class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 " required></textarea>
         </div>
         <div>
             <label for "Job_requirement" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Requirement</label>
-            <textarea id="Job_requirement" rows="2" name="Job_requirement" id="Job_requirement" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
+            <textarea id="Job_requirement" rows="2" name="Job_requirement" id="Job_requirement" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 " required></textarea>
         </div>
         <div class="status-container"></div>
         <div class="modal-footer">
@@ -42,7 +42,7 @@ $(document).ready(function () {
     //Create modal
     $(".view-create-modal").click(function () {
         $("modal-content").empty();
-        OpenModal(2);
+        OpenModal();
         modalContent();
     });
     //To reset the name of modal
@@ -245,7 +245,7 @@ $(document).ready(function () {
         // });
         $.ajax({
             type: "POST",
-            url: "/updatejob/" + jobId,
+            url: "/updateJob/" + jobId,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
